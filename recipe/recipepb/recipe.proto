@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package recipe;
+
+option go_package = "./recipe/recipepb";
+
+message Recipe {
+    string id = 1;
+    string author_id = 2;
+    string title = 3;
+    repeated string ingredients = 4;
+    repeated string procedures = 5;
+}
+
+message CreateRecipeRequest {
+    Recipe recipe = 1;
+}
+
+message CreateRecipeResponse {
+    Recipe Recipe = 1; // will have a blog id
+}
+
+message QueryRecipeRequest {
+    string id = 1;
+}
+
+message QueryRecipeResponse {
+    Recipe Recipe = 1;
+}
+
+message UpdateRecipeRequest {
+    Recipe Recipe = 1;
+}
+
+message UpdateRecipeResponse {
+    Recipe Recipe = 1;
+}
+
+message DeleteRecipeRequest {
+    string id = 1;
+}
+
+message DeleteRecipeResponse {
+    string id = 1;
+}
+
+service RecipeService {
+    rpc CreateRecipe (CreateRecipeRequest) returns (CreateRecipeResponse);
+    rpc QueryRecipe (QueryRecipeRequest) returns (QueryRecipeResponse);
+    rpc UpdateRecipe (UpdateRecipeRequest) returns (UpdateRecipeResponse);
+    rpc DeleteRecipe (DeleteRecipeRequest) returns (DeleteRecipeResponse);
+}
